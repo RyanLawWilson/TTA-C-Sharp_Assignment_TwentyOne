@@ -10,21 +10,6 @@ namespace TwentyOne
     {
         static void Main(string[] args)
         {
-            //Card cardOne = new Card();
-
-            //Console.WriteLine(cardOne.Face + " of " + cardOne.Suit);
-
-            //cardOne.Face = "Queen";
-            //cardOne.Suit = "Spades";
-
-            //Console.WriteLine(cardOne.Face + " of " + cardOne.Suit);
-
-
-
-            //Console.WriteLine("\n\n\n");
-
-
-
             Deck deck = new Deck();
 
             Console.WriteLine(deck.Cards.Count);
