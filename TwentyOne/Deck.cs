@@ -30,7 +30,27 @@ namespace TwentyOne
                 }
             }
         }
-
         public List<Card> Cards { get; set; }       // A deck is a collection of Cards.  We can get or set the cards.
+
+
+        // Shuffles the deck of cards. | Page 154 ... Moved to Deck class Page 162
+        // out parameters allow you to return more than 1 variable from a method.
+        public void Shuffle(int times = 1)    // Optional parameter: int times = 1
+        {
+            for (int i = 0; i < times; i++)
+            {
+                List<Card> tempList = new List<Card>();
+                Random rand = new Random();
+
+                while (Cards.Count > 0)
+                {
+                    int randomIndex = rand.Next(0, Cards.Count);
+                    tempList.Add(Cards[randomIndex]);
+                    Cards.RemoveAt(randomIndex);
+                }
+
+                Cards = tempList;
+            }
+        }
     }
 }
