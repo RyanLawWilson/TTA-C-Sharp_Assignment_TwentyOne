@@ -11,53 +11,52 @@ namespace TwentyOne
         static void Main(string[] args)
         {
             Deck deck = new Deck();
+            int timesShuffled = 0;      // When shuffle is called, this variable takes the value of timesShuffled (the out parameter)
+            deck = Shuffle(deck: deck, out timesShuffled, times: 3);   // Named parameters just make code more readable.
 
-            Deck shuffledDeck = Shuffle(deck);
-            Console.WriteLine(shuffledDeck.Cards.Count);
-            foreach (Card card in shuffledDeck.Cards)
+            Console.WriteLine(deck.Cards.Count);
+            foreach (Card card in deck.Cards)
             {
                 Console.WriteLine(card.Face + " of " + card.Suit);
             }
+            Console.WriteLine("Times Shuffled: {0}", timesShuffled);
 
             Console.ReadLine();
         }
 
         // Shuffles the deck of cards. | Page 154
-        public static Deck Shuffle(Deck deck)
+        // out parameters allow you to return more than 1 variable from a method.
+        public static Deck Shuffle(Deck deck, out int timesShuffled, int times = 1)    // Optional parameter: int times = 1
         {
-            //Jesse's shuffled list mehtod
-            List<Card> tempList = new List<Card>();
-            Random rand = new Random();
+            timesShuffled = 0;
 
-            while (deck.Cards.Count > 0)
+            for (int i = 0; i < times; i++)
             {
-                int randomIndex = rand.Next(0, deck.Cards.Count);
-                tempList.Add(deck.Cards[randomIndex]);
-                deck.Cards.RemoveAt(randomIndex);
+                timesShuffled++;
+                List<Card> tempList = new List<Card>();
+                Random rand = new Random();
+
+                while (deck.Cards.Count > 0)
+                {
+                    int randomIndex = rand.Next(0, deck.Cards.Count);
+                    tempList.Add(deck.Cards[randomIndex]);
+                    deck.Cards.RemoveAt(randomIndex);
+                }
+
+                deck.Cards = tempList;
             }
-
-            deck.Cards = tempList;
+            
             return deck;
-
-
-            //My Shuffle method
-            //Random rand = new Random();
-            //Deck shuffledDeck = new Deck();
-            //shuffledDeck.Cards.Clear();
-
-            //int cardsLeft = deck.Cards.Count;
-            //while (cardsLeft > 0)
-            //{
-            //    int indexOfCard = rand.Next(0, cardsLeft - 1);
-            //    Card card = deck.Cards[indexOfCard];
-
-            //    shuffledDeck.Cards.Add(card);
-            //    deck.Cards.Remove(card);
-
-            //    cardsLeft = deck.Cards.Count;
-            //}
-
-            //return shuffledDeck;
         }
+
+        //// Shuffles the deck of cards. | Page 157
+        //public static Deck Shuffle(Deck deck, int times)
+        //{
+        //    for (int i = 0; i < times; i++)
+        //    {
+        //        deck = Shuffle(deck);
+        //    }
+        //    return deck;
+        //}
     }
 }
