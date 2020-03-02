@@ -10,16 +10,25 @@ namespace TwentyOne
     {
         static void Main(string[] args)
         {
-            Deck deck = new Deck();
+            // Card card = new Card() { Face = "King", Suit = "Spades" };  // Initialization quickly.
 
-            deck.Shuffle();
+            TwentyOneGame game = new TwentyOneGame() { Dealer = "Ryan", Name = "Twenty One"};
+            game.Players = new List<string>() { "Bob", "Joe", "Smith" };
 
-            foreach (Card card in deck.Cards)
-            {
-                Console.WriteLine(card.Face + " of " + card.Suit);
-            }
+            game.ListPlayers();     // Calling the superclass method.  Game is the superclass and you are calling it's method.
 
-            Console.ReadLine();
+            game.Play();        // Implement this later
+
+            Console.Read();
+            //Deck deck = new Deck();
+            //deck.Shuffle(3);
+
+            //foreach (Card card in deck.Cards)
+            //{
+            //    Console.WriteLine(card.Face + " of " + card.Suit);
+            //}
+
+            //Console.ReadLine();
         }
     }
 }
