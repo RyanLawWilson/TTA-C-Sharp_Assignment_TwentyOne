@@ -10,24 +10,21 @@ namespace TwentyOne
     {
         static void Main(string[] args)
         {
+            Game game = new TwentyOneGame();
 
+            game.Players = new List<string>() { "Jesse", "Bob", "Sup" };
 
-            // Using Polymorphism, you can put different types of games into a list.
-            // Child class can morph into parent class.
-            Game game = new TwentyOneGame();        // 21 Game MORPHES into Game
-            List<Game> games = new List<Game>();
-            games.Add(game);
+            game.ListPlayers();
 
+            //Deck deck = new Deck();
+            //deck.Shuffle(3);
 
-            Deck deck = new Deck();
-            deck.Shuffle(3);
+            //foreach (Card card in deck.Cards)
+            //{
+            //    Console.WriteLine(card.Face + " of " + card.Suit);
+            //}
 
-            foreach (Card card in deck.Cards)
-            {
-                Console.WriteLine(card.Face + " of " + card.Suit);
-            }
-
-            Console.WriteLine(deck.Cards.Count);
+            //Console.WriteLine(deck.Cards.Count);
             Console.ReadLine();
         }
     }
