@@ -6,9 +6,9 @@ using System.Text;
 
 namespace TwentyOne
 {
-    public class Player
+    public class Player // <T> to make this class to make it generic (accepts a data type upon creation)
     {
-        public List<Card> Hand { get; set; }
+        public List<Card> Hand { get; set; }    // Change to List<T> if class is generic.  Allows players to have different kinds of lists, not just cards.
         public int Balance { get; set; }
         public string Name { get; set; }
         public bool isActivelyPlaying { get; set; }

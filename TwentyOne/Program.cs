@@ -12,12 +12,9 @@ namespace TwentyOne
     {
         static void Main(string[] args)
         {
-            Game game = new TwentyOneGame();
+            // If Player was generic, you could say:
+            // Player<Card> player = new Player<Card>();  Pass Card to Player to make a List of Cards (see Player class)
 
-            Player player = new Player() {Name = "Bob"};
-            // Notice that game + player looks like (Game game, Player player) in the Player class + operator
-            game = game + player;
-            game = game - player;
             Deck deck = new Deck();
             deck.Shuffle(3);
 
