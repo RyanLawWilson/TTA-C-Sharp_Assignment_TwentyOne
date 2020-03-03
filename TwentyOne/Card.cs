@@ -7,7 +7,8 @@ using System.Text;
 namespace TwentyOne
 {
     // Represents a Card in a standard deck of cards
-    public class Card
+    // We make Card struct because nothing inherits from card and we want the value-type functionality Page 195
+    public struct Card
     {
         // Public makes things accessable to other classes
 
