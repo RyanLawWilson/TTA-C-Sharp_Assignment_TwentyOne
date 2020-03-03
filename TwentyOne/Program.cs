@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// Overloading operators! Page 182
+
 namespace TwentyOne
 {
     class Program
@@ -12,6 +14,10 @@ namespace TwentyOne
         {
             Game game = new TwentyOneGame();
 
+            Player player = new Player() {Name = "Bob"};
+            // Notice that game + player looks like (Game game, Player player) in the Player class + operator
+            game = game + player;
+            game = game - player;
             Deck deck = new Deck();
             deck.Shuffle(3);
 

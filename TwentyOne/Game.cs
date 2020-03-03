@@ -9,7 +9,12 @@ namespace TwentyOne
     // abstract means that this class can never be instantiated
     public abstract class Game
     {
-        public List<string> Players { get; set; }
+        public Game ()
+        {
+            Players = new List<Player>();
+        }
+
+        public List<Player> Players { get; set; }
         public string Name { get; set; }
         public string Dealer { get; set; }
 
@@ -17,9 +22,9 @@ namespace TwentyOne
         // Allows you to customize this method in a child class
         public virtual void ListPlayers()
         {
-            foreach (string player in Players)
+            foreach (Player player in Players)
             {
-                Console.WriteLine(player);
+                Console.WriteLine(player.Name);
             }
         }
 
