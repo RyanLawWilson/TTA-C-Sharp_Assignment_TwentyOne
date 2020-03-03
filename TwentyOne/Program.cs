@@ -12,19 +12,15 @@ namespace TwentyOne
         {
             Game game = new TwentyOneGame();
 
-            game.Players = new List<string>() { "Jesse", "Bob", "Sup" };
+            Deck deck = new Deck();
+            deck.Shuffle(3);
 
-            game.ListPlayers();
+            foreach (Card card in deck.Cards)
+            {
+                Console.WriteLine(card.Face + " of " + card.Suit);
+            }
 
-            //Deck deck = new Deck();
-            //deck.Shuffle(3);
-
-            //foreach (Card card in deck.Cards)
-            //{
-            //    Console.WriteLine(card.Face + " of " + card.Suit);
-            //}
-
-            //Console.WriteLine(deck.Cards.Count);
+            Console.WriteLine(deck.Cards.Count);
             Console.ReadLine();
         }
     }
