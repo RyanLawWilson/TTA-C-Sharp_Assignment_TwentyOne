@@ -12,21 +12,18 @@ namespace TwentyOne
     {
         static void Main(string[] args)
         {
-            Card card = new Card();
-            card.Suit = Suit.Clubs;     // Using an enum to assign the Card's suit.
-
-            int underlyingValue = (int)Suit.Diamonds;   // enums have an underlying integer value.
-            Console.WriteLine(underlyingValue);
-
             Deck deck = new Deck();
             deck.Shuffle(3);
 
-            //foreach (Card card in deck.Cards)
-            //{
-            //    Console.WriteLine(card.Face + " of " + card.Suit);
-            //}
+            foreach (Card card in deck.Cards)
+            {
+                ConsoleColor color = card.Suit == Suit.Hearts || card.Suit == Suit.Diamonds ? ConsoleColor.Red : ConsoleColor.DarkCyan;
 
-            Console.WriteLine("{0}", deck.Cards.Count, Console.ForegroundColor = ConsoleColor.Red); //ConsoleColor is an Enum
+                Console.WriteLine("{0,-6} of {1,9}", card.Face, card.Suit, Console.ForegroundColor = color);
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine(deck.Cards.Count); 
             Console.ReadLine();
         }
     }

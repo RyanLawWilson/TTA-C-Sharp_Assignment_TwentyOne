@@ -14,21 +14,23 @@ namespace TwentyOne
         {
             Cards = new List<Card>();               // Initialize the deck of cards.
 
-            // These are all of the Faces and Suits of each card.
-            List<string> Faces = new List<string>() { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
-            List<string> Suits = new List<string>() { "Spades", "Clubs", "Hearts", "Diamonds" };
-
-            // Add each card variation to the deck.
-            foreach (string face in Faces)
+            // i represents Faces
+            for (int i = 0; i < 13; i++)
             {
-                foreach (string suit in Suits)
+                // j represents Suits
+                for (int j = 0; j < 4; j++)
                 {
-                    Card card = new Card();         // Build a new Card
-                    //card.Suit = suit;               // Set property of Suit
-                    card.Face = face;               // Set property of Face
-                    Cards.Add(card);                // Add this card to the deck.
+                    Card card = new Card();
+
+                    // You can cast an Enum to an integer ==> (int) Face.Ace to get the underlying index value ==> 0.
+                    // Also, you can cast an integer to an Enum ==> (Face) 0 to get the string value ==> Ace.
+
+                    card.Face = (Face)i;
+                    card.Suit = (Suit)j;
+                    Cards.Add(card);
                 }
             }
+
         }
         public List<Card> Cards { get; set; }       // A deck is a collection of Cards.  We can get or set the cards.
 
