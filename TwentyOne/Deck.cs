@@ -24,7 +24,7 @@ namespace TwentyOne
                 foreach (string suit in Suits)
                 {
                     Card card = new Card();         // Build a new Card
-                    card.Suit = suit;               // Set property of Suit
+                    //card.Suit = suit;               // Set property of Suit
                     card.Face = face;               // Set property of Face
                     Cards.Add(card);                // Add this card to the deck.
                 }

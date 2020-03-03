@@ -11,14 +11,17 @@ namespace TwentyOne
     {
         // Public makes things accessable to other classes
 
-        // Constructor:
-        public Card()
-        {
-            Suit = "Spades";
-            Face = "2";
-        }
-
-        public string Suit { get; set; }        //You can 'get' this property or 'set' this property
+        public Suit Suit { get; set; }        //You can 'get' this property or 'set' this property
         public string Face { get; set; }        //You can 'get' this property or 'set' this property
+    }
+
+    // Enums are usually in a different file
+    // Enums have underlying value corresponding to how they are listed.  You can also change it.
+    public enum Suit
+    {
+        Clubs=3,
+        Diamonds=6,
+        Hearts=1,
+        Spades
     }
 }
