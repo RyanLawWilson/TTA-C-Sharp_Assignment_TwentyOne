@@ -12,21 +12,22 @@ namespace TwentyOne
     {
         static void Main(string[] args)
         {
-            // Every object is either a reference type or value type
 
-            // Structs are value types that can't inherit (int bool Enum)
-            // Value types are non-nullable
+            Deck deck = new Deck();
 
-            Card card1 = new Card();
-            Card card2 = card1;         // Gives card2 the address of card1.
-            card1.Face = Face.Eight;
-            card2.Face = Face.King;
+            // x represent each element => means where, Condition.  ex: (x where x.Face == Face.Ace)
+            // x => can be thought of as: "For each item x"
+            //int count = deck.Cards.Count(x => x.Face == Face.Ace);              //Count is a Lambda function
 
-            // Classes operate by reference.
-            Console.WriteLine(card1.Face);      // Prints King
+            //List<Card> newList = deck.Cards.Where(x => x.Face == Face.King).ToList();
 
-            //Deck deck = new Deck();
-            //deck.Shuffle(3);
+            List<int> numberList = new List<int> { 1, 4, 561, 41, 2, 3, 123, 990, 122 };
+            int sum = numberList.Sum(x => x + 5);
+            sum = numberList.Where(x => x > 20).Sum();
+
+            Console.WriteLine(sum);
+
+            deck.Shuffle(3);
 
             //foreach (Card card in deck.Cards)
             //{
@@ -36,7 +37,7 @@ namespace TwentyOne
             //}
             //Console.ForegroundColor = ConsoleColor.White;
 
-            //Console.WriteLine(deck.Cards.Count); 
+            //Console.WriteLine(deck.Cards.Count);
             Console.ReadLine();
         }
     }
