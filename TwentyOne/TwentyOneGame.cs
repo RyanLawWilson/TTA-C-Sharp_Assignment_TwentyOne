@@ -42,10 +42,6 @@ namespace TwentyOne
 
             Dealer.Deck.Shuffle(3);
 
-            Card card = new Card();
-            card.Face = Face.Ace;
-            Dealer.Deck.Cards[1].Face = Face.Ace;
-
             Console.WriteLine(Dealer.Deck.Cards[0]);
             Dealer.Deck.Cards[1].setFace(Face.King);
             Console.WriteLine(Dealer.Deck.Cards[1]);
