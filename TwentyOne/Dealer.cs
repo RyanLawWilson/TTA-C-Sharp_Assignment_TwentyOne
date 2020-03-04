@@ -7,12 +7,13 @@ using System.Linq;
 
 namespace TwentyOne
 {
-    class Dealer
+    public class Dealer
     {
         public string Name { get; set; }
         public Deck Deck { get; set; }
         public int Balance { get; set; }
 
+        // Deals a Card to a Player Hand
         public void Deal(List<Card> Hand)
         {
             Hand.Add(Deck.Cards.First());

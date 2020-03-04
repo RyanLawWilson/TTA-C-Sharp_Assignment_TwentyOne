@@ -14,6 +14,19 @@ namespace TwentyOne
 
         public Suit Suit { get; set; }        //You can 'get' this property or 'set' this property
         public Face Face { get; set; }        //You can 'get' this property or 'set' this property
+
+        // When you print a Card, this text will show.
+        public override string ToString()
+        {
+            //ConsoleColor color = Suit == Suit.Hearts || Suit == Suit.Diamonds ? ConsoleColor.Red : ConsoleColor.DarkCyan;
+            return string.Format("{0} of {1}", Face, Suit); ;
+        }
+
+        // TESTING PURPOSES.
+        public void setFace(Face face)
+        {
+            Face = face;
+        }
     }
 
     // Enums are usually in a different file.  They limit the possible values you can get.

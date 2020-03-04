@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-// Overloading operators! Page 182
+// Page 203
 
 namespace TwentyOne
 {
@@ -12,33 +12,35 @@ namespace TwentyOne
     {
         static void Main(string[] args)
         {
+            Console.Write("Welcome to the Grand Hotel and Casino.  Let's start by giving me your name:  ");
+            string playerName = Console.ReadLine();
 
-            Deck deck = new Deck();
+            Console.Write("How much money did you bring to wast-- SPEND today?  ");
+            int bank = Convert.ToInt32(Console.ReadLine());
 
-            // x represent each element => means where, Condition.  ex: (x where x.Face == Face.Ace)
-            // x => can be thought of as: "For each item x"
-            //int count = deck.Cards.Count(x => x.Face == Face.Ace);              //Count is a Lambda function
+            Console.Write("Hello, {0}.  Would you like to play 21?  ", playerName);
+            string answer = Console.ReadLine().ToLower();
 
-            //List<Card> newList = deck.Cards.Where(x => x.Face == Face.King).ToList();
+            // If the user wants to play 21, add them to the players list and play the game.
+            if (answer == "yes" || answer == "yeah" || answer == "y" || answer == "yup" || answer == "ya" || answer == "true" || answer == "t" || answer == "tru")
+            {
+                Player player = new Player(playerName, bank);
+                Game game = new TwentyOneGame();
+                game += player;                                 // The player has an overloaded operator that allows the player to be added to the players List using the + operator.
+                
+                // Only play the game is the player is playing and has money
+                player.isActivelyPlaying = true;
+                while (player.isActivelyPlaying && player.Balance > 0)
+                {
+                    game.Play();                // Logic for the game will be mostly in this method
+                }
+                game -= player;
+                Console.WriteLine("Thank you for playing!");
+            }
 
-            List<int> numberList = new List<int> { 1, 4, 561, 41, 2, 3, 123, 990, 122 };
-            int sum = numberList.Sum(x => x + 5);
-            sum = numberList.Where(x => x > 20).Sum();
-
-            Console.WriteLine(sum);
-
-            deck.Shuffle(3);
-
-            //foreach (Card card in deck.Cards)
-            //{
-            //    ConsoleColor color = card.Suit == Suit.Hearts || card.Suit == Suit.Diamonds ? ConsoleColor.Red : ConsoleColor.DarkCyan;
-
-            //    Console.WriteLine("{0,-6} of {1,9}", card.Face, card.Suit, Console.ForegroundColor = color);
-            //}
-            //Console.ForegroundColor = ConsoleColor.White;
-
-            //Console.WriteLine(deck.Cards.Count);
-            Console.ReadLine();
+            Console.WriteLine("\nFeel free to look around... Actually, GET OUT!");
+            Console.WriteLine("*You were kicked out of the casino*");
+            Console.Read();
         }
     }
 }
