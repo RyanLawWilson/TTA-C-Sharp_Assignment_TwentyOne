@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 // Page 203
 
@@ -12,6 +13,13 @@ namespace TwentyOne
     {
         static void Main(string[] args)
         {
+            // Writing the file below to a txt file
+            //string text = "Here is some text";
+            //File.WriteAllText(@"C:\Users\Ryan Wilson\Documents\TechAcademyRepos\TTA Basic C-Sharp Projects\.TwentyOne\TwentyOne\files\log.txt", text);
+
+            // Reading a file
+            string text = File.ReadAllText(@"C:\Users\Ryan Wilson\Documents\TechAcademyRepos\TTA Basic C-Sharp Projects\.TwentyOne\TwentyOne\files\log.txt");
+
             Console.Write("Welcome to the Grand Hotel and Casino.  Let's start by giving me your name:  ");
             string playerName = Console.ReadLine();
 

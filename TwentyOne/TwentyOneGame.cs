@@ -41,7 +41,6 @@ namespace TwentyOne
             Dealer.Deck = new Deck();
 
             Dealer.Deck.Shuffle(3);
-
             Console.WriteLine(Dealer.Deck.Cards[0]);
             Dealer.Deck.Cards[1].setFace(Face.King);
             Console.WriteLine(Dealer.Deck.Cards[1]);
