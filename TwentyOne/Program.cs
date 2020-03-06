@@ -13,12 +13,15 @@ namespace TwentyOne
     {
         static void Main(string[] args)
         {
-            // Writing the file below to a txt file
-            //string text = "Here is some text";
-            //File.WriteAllText(@"C:\Users\Ryan Wilson\Documents\TechAcademyRepos\TTA Basic C-Sharp Projects\.TwentyOne\TwentyOne\files\log.txt", text);
 
-            // Reading a file
-            string text = File.ReadAllText(@"C:\Users\Ryan Wilson\Documents\TechAcademyRepos\TTA Basic C-Sharp Projects\.TwentyOne\TwentyOne\files\log.txt");
+            DateTime birthDate = new DateTime(1995,5,23,8,32,45);
+            DateTime yearOfGrad = new DateTime(2013, 6, 1, 16, 34, 22);
+
+            TimeSpan ageAtGraduation = yearOfGrad - birthDate;      // TimeSpan allows you to compare DateTimes.
+
+
+
+
 
             Console.Write("Welcome to the Grand Hotel and Casino.  Let's start by giving me your name:  ");
             string playerName = Console.ReadLine();

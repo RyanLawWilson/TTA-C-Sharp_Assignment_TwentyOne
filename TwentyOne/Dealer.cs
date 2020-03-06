@@ -26,6 +26,7 @@ namespace TwentyOne
             // We are opening a stream here.  The using statement will dispose of any memory associated with this process once it is done.
             using (StreamWriter file = new StreamWriter(@"C:\Users\Ryan Wilson\Documents\TechAcademyRepos\TTA Basic C-Sharp Projects\.TwentyOne\TwentyOne\files\log.txt", true))
             {
+                file.WriteLine(DateTime.Now);
                 file.WriteLine(card);
             }
 
