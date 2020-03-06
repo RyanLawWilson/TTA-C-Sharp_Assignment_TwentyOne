@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 
 // Page 203
 
@@ -13,15 +8,7 @@ namespace TwentyOne
     {
         static void Main(string[] args)
         {
-
-            DateTime birthDate = new DateTime(1995,5,23,8,32,45);
-            DateTime yearOfGrad = new DateTime(2013, 6, 1, 16, 34, 22);
-
-            TimeSpan ageAtGraduation = yearOfGrad - birthDate;      // TimeSpan allows you to compare DateTimes.
-
-
-
-
+            // When you get to a large project, use different namespaces and sub-namespaces
 
             Console.Write("Welcome to the Grand Hotel and Casino.  Let's start by giving me your name:  ");
             string playerName = Console.ReadLine();
