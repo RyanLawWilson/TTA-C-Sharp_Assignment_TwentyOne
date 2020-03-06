@@ -4,7 +4,7 @@ using System.Text;
 
 // Page 150
 
-namespace TwentyOne
+namespace Casino
 {
     // Represents a deck of standard cards.
     public class Deck

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace TwentyOne
+namespace Casino.TwentyOne
 {
-    public class TwentyOneDealer : Dealer
+    public class TwentyOneDealer : Casino.Dealer
     {
         public TwentyOneDealer ()
         {

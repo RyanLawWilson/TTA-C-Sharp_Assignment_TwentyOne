@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using Casino;
+using Casino.TwentyOne;
 
 // Page 203
 
@@ -9,8 +12,16 @@ namespace TwentyOne
         static void Main(string[] args)
         {
             // When you get to a large project, use different namespaces and sub-namespaces
+            Player pl = new Player("Bob");
+            // You can use the var keyword to store any data type.
 
-            Console.Write("Welcome to the Grand Hotel and Casino.  Let's start by giving me your name:  ");
+            // Declaring constants
+            const string casinoName = "Grand Hotel and Casino";
+
+            // Guid stands for Global Unique Identifier.  It gives you a random unique number that you can use to identify things
+            Guid identifier = Guid.NewGuid();
+
+            Console.Write($"Welcome to the {casinoName}.  Let's start by giving me your name:  ");
             string playerName = Console.ReadLine();
 
             Console.Write("How much money did you bring to wast-- SPEND today?  ");
@@ -25,7 +36,12 @@ namespace TwentyOne
                 Player player = new Player(playerName, bank);
                 Game game = new TwentyOneGame();
                 game += player;                                 // The player has an overloaded operator that allows the player to be added to the players List using the + operator.
-                
+                player.ID = Guid.NewGuid();
+                using (StreamWriter file = new StreamWriter(@"C:\Users\Ryan Wilson\Documents\TechAcademyRepos\TTA Basic C-Sharp Projects\.TwentyOne\Casino\files\log.txt", true))
+                {
+                    file.WriteLine(player.ID);
+                }
+
                 // Only play the game is the player is playing and has money
                 player.isActivelyPlaying = true;
                 while (player.isActivelyPlaying && player.Balance > 0)

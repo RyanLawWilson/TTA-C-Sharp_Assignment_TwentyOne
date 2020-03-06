@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 // Page 148
 
-namespace TwentyOne
+namespace Casino
 {
     // Represents a Card in a standard deck of cards
     // We make Card struct because nothing inherits from card and we want the value-type functionality Page 195

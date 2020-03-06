@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TwentyOne.Interfaces;
+using Casino.Interfaces;
 
-namespace TwentyOne
+namespace Casino.TwentyOne
 {
     // Inherit from both Game (class) and IWalkAway (interface)
     public class TwentyOneGame : Game, IWalkAway       // 21 Game INHERITS from Game and the interface IWalkAway
@@ -41,15 +41,6 @@ namespace TwentyOne
             Dealer.Deck = new Deck();
 
             Dealer.Deck.Shuffle(3);
-            Console.WriteLine(Dealer.Deck.Cards[0]);
-            Dealer.Deck.Cards[1].setFace(Face.King);
-            Console.WriteLine(Dealer.Deck.Cards[1]);
-            Dealer.Deck.Cards[2].setFace(Face.Ace);
-            Console.WriteLine(Dealer.Deck.Cards[2]);
-            Dealer.Deck.Cards[4].setFace(Face.King);
-            Dealer.Deck.Cards[5].setFace(Face.King);
-            Dealer.Deck.Cards[6].setFace(Face.King);
-            Dealer.Deck.Cards[7].setFace(Face.King);
 
             Console.Write("Place your bet: ");
 

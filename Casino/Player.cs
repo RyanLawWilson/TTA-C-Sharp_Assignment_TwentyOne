@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 // Page 170
 
-namespace TwentyOne
+namespace Casino
 {
     public class Player // <T> to make this class to make it generic (accepts a data type upon creation)
     {
-        // Constructor.
-        public Player(string name, int beginningBalance)
+        // Constructor Chaining
+        // This seems unnecessary, you can just make beginningBalance an optional parameter
+        //public Player(string name) : this(name, 100)
+        //{
+
+        //}
+        public Player(string name, int beginningBalance = 100)
         {
             Hand = new List<Card>();
             Balance = beginningBalance;
@@ -20,6 +24,7 @@ namespace TwentyOne
         public int Balance { get; set; }
         public string Name { get; set; }
         public bool isActivelyPlaying { get; set; }
+        public Guid ID { get; set; }
 
         public bool Stay { get; set; }      // Should make a TwentyOnePlayer for this property.  Not all games gives the option for the player to stay.
 

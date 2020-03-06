@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 // Page 167
 
-namespace TwentyOne
+namespace Casino
 {
     // abstract means that this class can never be instantiated
     public abstract class Game

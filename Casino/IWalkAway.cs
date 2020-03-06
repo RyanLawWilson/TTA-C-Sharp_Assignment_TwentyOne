@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// Page 
 
-// Page 
-
-namespace TwentyOne.Interfaces  // Making a subnamespace
+namespace Casino.Interfaces  // Making a subnamespace
 {
     // You can only inherit 1 base class in .NET, but you can inherit as many interfaces as you want.
     // Interfaces always start the name with capital 'i'

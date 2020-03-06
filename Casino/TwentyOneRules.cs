@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TwentyOne
+namespace Casino.TwentyOne
 {
     // This class is to contain logic specific to BlackJack
     public static class TwentyOneRules
