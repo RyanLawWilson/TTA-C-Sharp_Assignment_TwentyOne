@@ -24,8 +24,16 @@ namespace TwentyOne
             Console.Write($"Welcome to the {casinoName}.  Let's start by giving me your name:  ");
             string playerName = Console.ReadLine();
 
-            Console.Write("How much money did you bring to wast-- SPEND today?  ");
-            int bank = Convert.ToInt32(Console.ReadLine());
+
+            bool invalidAnswer = true;
+            int bank = 0;
+            while (invalidAnswer)
+            {
+                Console.Write("How much money did you bring to wast-- SPEND today?  ");
+                invalidAnswer = !int.TryParse(Console.ReadLine(), out bank);
+                if (invalidAnswer) Console.WriteLine("Please enter digits only with no decimals");
+            }
+
 
             Console.Write("Hello, {0}.  Would you like to play 21?  ", playerName);
             string answer = Console.ReadLine().ToLower();
@@ -46,7 +54,22 @@ namespace TwentyOne
                 player.isActivelyPlaying = true;
                 while (player.isActivelyPlaying && player.Balance > 0)
                 {
-                    game.Play();                // Logic for the game will be mostly in this method
+                    try
+                    {
+                        game.Play();                // Logic for the game will be mostly in this method
+                    }
+                    catch (FraudException)
+                    {
+                        Console.WriteLine("Security, this person has negative money!");
+                        Console.Read();
+                        return;
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("An error occured.  Please contact system admin (good luck)");
+                        Console.Read();
+                        return;
+                    }
                 }
                 game -= player;
                 Console.WriteLine("Thank you for playing!");

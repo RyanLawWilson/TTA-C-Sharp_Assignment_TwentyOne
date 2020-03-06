@@ -42,18 +42,22 @@ namespace Casino.TwentyOne
 
             Dealer.Deck.Shuffle(3);
 
-            Console.Write("Place your bet: ");
-
             // Each player places a bet
             foreach (Player player in Players)
             {
-                int bet = Convert.ToInt32(Console.ReadLine());
+                bool validAnswer = false;
+                int bet = 0;
+                while (!validAnswer)
+                {
+                    Console.Write("Place your bet: ");
+                    validAnswer = int.TryParse(Console.ReadLine(), out bet);
+                    if (!validAnswer) Console.WriteLine("Please enter digits, no decimals");
+                }
+                if (bet < 0) throw new FraudException();
+
                 bool successfullyBet = player.Bet(bet);
 
-                if (!successfullyBet)
-                {
-                    return;     // Saying return will end the method.
-                }
+                if (!successfullyBet) return; // Saying return will end the method.
 
                 // Add an association between the player and their bet using the Dictionary ( located in Game )
                 Bets[player] = bet;
