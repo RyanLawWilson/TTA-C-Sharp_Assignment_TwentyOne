@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using Casino;
 using Casino.TwentyOne;
@@ -23,6 +26,19 @@ namespace TwentyOne
 
             Console.Write($"Welcome to the {casinoName}.  Let's start by giving me your name:  ");
             string playerName = Console.ReadLine();
+            if (playerName.ToLower() == "admin")
+            {
+                List<ExceptionEntity> Exceptions = ReadExceptions();
+                foreach (var exception in Exceptions)
+                {
+                    Console.Write(exception.Id + " | ");
+                    Console.Write(exception.ExceptionType + " | ");
+                    Console.Write(exception.ExceptionMessage + " | ");
+                    Console.Write(exception.TimeStamp + "\n");
+                }
+                Console.Read();
+                return;
+            }
 
 
             bool invalidAnswer = true;
@@ -58,15 +74,17 @@ namespace TwentyOne
                     {
                         game.Play();                // Logic for the game will be mostly in this method
                     }
-                    catch (FraudException)
+                    catch (FraudException ex)
                     {
-                        Console.WriteLine("Security, this person has negative money!");
+                        Console.WriteLine(ex.Message);
+                        UpdateDBWtihException(ex);
                         Console.Read();
                         return;
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
                         Console.WriteLine("An error occured.  Please contact system admin (good luck)");
+                        UpdateDBWtihException(ex);
                         Console.Read();
                         return;
                     }
@@ -78,6 +96,90 @@ namespace TwentyOne
             Console.WriteLine("\nFeel free to look around... Actually, GET OUT!");
             Console.WriteLine("*You were kicked out of the casino*");
             Console.Read();
+        }
+
+        // Reads all of the exceptions that are stored in tkhe database
+        private static List<ExceptionEntity> ReadExceptions()
+        {
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;
+                                        Initial Catalog=TwentyOneGame;
+                                        Integrated Security=True;
+                                        Connect Timeout=30;
+                                        Encrypt=False;
+                                        TrustServerCertificate=False;
+                                        ApplicationIntent=ReadWrite;
+                                        MultiSubnetFailover=False";
+
+            string queryString = @"SELECT * FROM Exceptions";
+
+            List<ExceptionEntity> Exceptions = new List<ExceptionEntity>();
+
+            // Connect to the database
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                connection.Open();
+
+                // We are using a select statement so we want to read what comes back.
+                SqlDataReader reader = command.ExecuteReader();
+
+                // While there is still stuff to read... Convert the record into a c# object
+                while (reader.Read())
+                {
+                    ExceptionEntity exception = new ExceptionEntity();
+                    exception.Id = Convert.ToInt32(reader["Id"]);
+                    exception.ExceptionType = reader["ExceptionType"].ToString();
+                    exception.ExceptionMessage = reader["ExceptionMessage"].ToString();
+                    exception.TimeStamp = Convert.ToDateTime(reader["TimeStamp"]);
+                    Exceptions.Add(exception);
+                }
+
+                connection.Close();
+            }
+
+            // Return the list of exceptions
+            return Exceptions;
+        }
+
+        // Uses ADO.NET to connect to database
+        private static void UpdateDBWtihException(Exception ex)
+        {
+            // A string that has all of the information for connection to the database.
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;
+                                        Initial Catalog=TwentyOneGame;
+                                        Integrated Security=True;
+                                        Connect Timeout=30;
+                                        Encrypt=False;
+                                        TrustServerCertificate=False;
+                                        ApplicationIntent=ReadWrite;
+                                        MultiSubnetFailover=False";
+
+            string queryString = @"
+                                INSERT INTO Exceptions
+                                (ExceptionType, ExceptionMessage, TimeStamp)
+                                VALUES
+                                (@ExceptionType, @ExceptionMessage, @TimeStamp)";   // Set up to use paramaterized queries
+
+            // using will only open the connection for as long as we are in the {}
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(queryString, connection);
+
+                // Naming the data type this way protects against SQL injections! Paramaterized queries.
+                command.Parameters.Add("@ExceptionType", SqlDbType.VarChar);
+                command.Parameters.Add("@ExceptionMessage", SqlDbType.VarChar);
+                command.Parameters.Add("@TimeStamp", SqlDbType.DateTime);
+
+                // Set the values of this insert.
+                command.Parameters["@ExceptionType"].Value = ex.GetType().ToString();
+                command.Parameters["@ExceptionMessage"].Value = ex.Message;
+                command.Parameters["@TimeStamp"].Value = DateTime.Now;
+
+                connection.Open();
+                command.ExecuteNonQuery();  // INSERT is a nonquery.
+                connection.Close();
+            }
         }
     }
 }
